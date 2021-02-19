@@ -1,4 +1,4 @@
-from Objects_osu_HitObjects_HitObject import HitObject
+from .HitObject import HitObject
 
 class DifficultyHitObject(HitObject):
     TravelDistance = None

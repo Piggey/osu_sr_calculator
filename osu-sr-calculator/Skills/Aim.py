@@ -1,5 +1,5 @@
-from Skills_Skill import Skill
-from Objects_osu_HitObjects_DifficultyHitObject import DifficultyHitObject
+from .Skill import Skill
+from ..Objects.osu.HitObjects.DifficultyHitObject import DifficultyHitObject
 from math import pi, sqrt, sin
 
 class Aim(Skill):

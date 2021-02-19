@@ -1,8 +1,8 @@
-from Objects_osu_HitObjects_HitObject import HitObject
-from Objects_osu_HitObjects_DifficultyHitObject import DifficultyHitObject 
-from Objects_osu_HitObjects_Slider import Slider 
-from Objects_osu_HitObjects_Spinner import Spinner 
-from Objects_Vector2 import Vector2
+from .Objects.osu.HitObjects.HitObject import HitObject
+from .Objects.osu.HitObjects.DifficultyHitObject import DifficultyHitObject
+from .Objects.osu.HitObjects.Slider import Slider
+from .Objects.osu.HitObjects.Spinner import Spinner
+from .Objects.Vector2 import Vector2
 from math import atan2
 
 class DifficultyHitObjectCreator(object):

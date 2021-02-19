@@ -1,4 +1,4 @@
-from Objects_osu_HitObjects_HitObject import HitObject
+from .HitObjects.HitObject import HitObject
 
 class Beatmap(object):
     Difficulty = {

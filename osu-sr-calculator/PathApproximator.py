@@ -1,5 +1,5 @@
-from Objects_Vector2 import Vector2
-from Precision import Precision
+from .Objects.Vector2 import Vector2
+from .Precision import Precision
 from math import atan2, pi, ceil, acos, cos, sin
 
 class PathApproximator(object):

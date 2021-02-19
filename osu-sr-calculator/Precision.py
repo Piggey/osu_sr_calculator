@@ -1,4 +1,4 @@
-from Objects_Vector2 import Vector2
+from .Objects.Vector2 import Vector2
 from abc import ABC
 
 class Precision(ABC):

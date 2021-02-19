@@ -1,5 +1,5 @@
-from Objects_Vector2 import Vector2
 from abc import ABC
+from ...Vector2 import Vector2
 
 class HitObject(ABC):
     Position = None

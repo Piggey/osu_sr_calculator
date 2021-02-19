@@ -1,7 +1,7 @@
-from Objects_osu_PathType import PathType
-from PathApproximator import PathApproximator
-from Objects_Vector2 import Vector2
-from Precision import Precision
+from .Objects.osu.PathType import PathType
+from .PathApproximator import PathApproximator
+from .Objects.Vector2 import Vector2
+from .Precision import Precision
 
 class SliderPath:
     pathType = None
@@ -129,8 +129,8 @@ class SliderPath:
     def __indexOfDistance(self, d):
         try:
             index = self.cumulativeLength.index(d)
-        except ValueError as e:
-            # print(e)
+        except ValueError:
+            # print(ValueError)
             for cL in self.cumulativeLength:
                 if(cL > d):
                     return self.cumulativeLength.index(cL)

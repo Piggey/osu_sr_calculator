@@ -1,7 +1,7 @@
-from osu_service import OsuService 
-from BeatmapParser import BeatmapParser
-from DifficultyHitObjectCreator import DifficultyHitObjectCreator
-from StarRatingCalculator import StarRatingCalculator
+from .OsuService import OsuService
+from .BeatmapParser import BeatmapParser
+from .DifficultyHitObjectCreator import DifficultyHitObjectCreator
+from .StarRatingCalculator import StarRatingCalculator
 
 osuService = OsuService()
 beatmapParser = BeatmapParser()

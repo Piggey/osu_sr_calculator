@@ -1,5 +1,5 @@
-from Objects_osu_HitObjects_DifficultyHitObject import DifficultyHitObject 
-from Objects_osu_HitObjects_Spinner import Spinner 
+from ..Objects.osu.HitObjects.DifficultyHitObject import DifficultyHitObject
+from ..Objects.osu.HitObjects.Spinner import Spinner
 from abc import ABC
 
 class Skill(ABC):

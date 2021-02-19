@@ -1,11 +1,11 @@
-from Objects_osu_HitObjects_HitObject import HitObject
-from Objects_Vector2 import Vector2
-from SliderPath import SliderPath
-from Objects_osu_HitObjects_HitCircle import HitCircle
-from Objects_osu_HitObjects_SliderObjects_HeadCircle import HeadCircle
-from Objects_osu_HitObjects_SliderObjects_TailCircle import TailCircle
-from Objects_osu_HitObjects_SliderObjects_SliderTick import SliderTick
-from Objects_osu_HitObjects_SliderObjects_RepeatPoint import RepeatPoint
+from .HitObject import HitObject
+from ...Vector2 import Vector2
+from ....SliderPath import SliderPath
+from .HitCircle import HitCircle
+from .SliderObjects.HeadCircle import HeadCircle
+from .SliderObjects.TailCircle import TailCircle
+from .SliderObjects.SliderTick import SliderTick
+from .SliderObjects.RepeatPoint import RepeatPoint
 from functools import cmp_to_key
 
 class Slider(HitObject):

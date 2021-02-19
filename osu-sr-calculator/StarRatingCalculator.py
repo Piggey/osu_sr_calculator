@@ -1,6 +1,6 @@
-from Objects_osu_HitObjects_DifficultyHitObject import DifficultyHitObject
-from Skills_Aim import Aim
-from Skills_Speed import Speed
+from .Objects.osu.HitObjects.DifficultyHitObject import DifficultyHitObject
+from .Skills.Aim import Aim
+from .Skills.Speed import Speed
 from math import ceil, sqrt
 
 class StarRatingCalculator(object):
