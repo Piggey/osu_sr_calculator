@@ -2,6 +2,14 @@ from setuptools import setup, find_packages
 
 readme = open('README.md', 'r').read()
 req = list(map(lambda v: v.rstrip('\n'), open("requirements.txt", 'r').readlines()))
+packages = [
+    'osu_sr_calculator',
+    'osu_sr_calculator/Skills',
+    'osu_sr_calculator/Objects',
+    'osu_sr_calculator/Objects/osu',
+    'osu_sr_calculator/Objects/osu/HitObjects',
+    'osu_sr_calculator/Objects/osu/HitObjects/SliderObjects'
+    ]
 
 setup(
     name='osu_sr_calculator',
@@ -11,9 +19,9 @@ setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     url="https://github.com/Piggey/osu_sr_calculator",
-    install_reqs=req,
+    install_requires=req,
     keywords='osu!, osu, star rating, calculator, sr',
-    packages=find_packages(include=['osu_sr_calculator']),
+    packages=packages,
     include_package_data=True,
     classifiers=[
         'Development Status :: 3 - Alpha',
