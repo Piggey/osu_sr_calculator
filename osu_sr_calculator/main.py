@@ -9,7 +9,7 @@ difficultyHitObjectCreator = DifficultyHitObjectCreator()
 starRatingCalculator = StarRatingCalculator()
 Beatmap = None
 
-def calculateStarRating(returnAllDifficultyValues = False, **kwargs):
+def calculateStarRating(returnAllDifficultyValues = False, allCombinations = False, **kwargs):
     """Parameters:
     returnAllDifficultyValues = False
         returns total star rating value if False
@@ -18,7 +18,7 @@ def calculateStarRating(returnAllDifficultyValues = False, **kwargs):
     filepath: string
         path to .osu file (no need if map_id is set)
 
-    map_id: string
+    map_id: integer
         BeatmapID number of a beatmap (no need if filepath is set)
 
     mods (optional): list of string
