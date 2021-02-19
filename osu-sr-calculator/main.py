@@ -9,15 +9,40 @@ difficultyHitObjectCreator = DifficultyHitObjectCreator()
 starRatingCalculator = StarRatingCalculator()
 Beatmap = None
 
-def calculateStarRating(filepath = None, returnAllDifficultyValues = False, **kwargs):
-    mods = kwargs.get('mods', None)
+def calculateStarRating(returnAllDifficultyValues = False, **kwargs):
+    """Parameters:
+    returnAllDifficultyValues = False
+        returns total star rating value if False
+        when set to True, method will also return aim and speed difficulty
+        
+    filepath: string
+        path to .osu file (no need if map_id is set)
+
+    map_id: string
+        BeatmapID number of a beatmap (no need if filepath is set)
+
+    mods (optional): list of string
+        Specify which mods to include during star rating calculation
+        examples: 
+            mods=['DT']
+            mods=['EZ', 'HD', 'DT']
+            mods=[]
+
+    allCombinations = False
+        when set to True, will return star rating of every possible mod combination
+    """
+
+    map_filepath = kwargs.get('filepath', None)
     map_id = kwargs.get('map_id', None)
+    mods = kwargs.get('mods', None)
     allCombinations = kwargs.get('allCombinations', False)
 
-    if(map_id):
+    if(not map_filepath and not map_id):
+        raise Exception('Neither BeatmapID nor beatmap filepath specified.')
+    elif(map_id):
         Map = getOsuBeatmap(map_id)
     else:
-        Map = getLocalOsuBeatmap(filepath)
+        Map = getLocalOsuBeatmap(map_filepath)
 
     if(Map == None):
         raise Exception('No map found for specified map id. / wrong filepath')
