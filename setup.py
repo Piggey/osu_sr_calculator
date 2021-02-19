@@ -4,7 +4,7 @@ readme = open('README.md', 'r').read()
 req = list(map(lambda v: v.rstrip('\n'), open("requirements.txt", 'r').readlines()))
 
 setup(
-    name='osu-sr-calculator',
+    name='osu_sr_calculator',
     author='Piggey',
     version='0.1',
     description="MrHelix's osu! star rating calculator rewritten for your Python needs",
@@ -12,9 +12,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Piggey/osu-sr-calculator",
     install_reqs=req,
-    keywords='osu!, osu, star rating, calculator, sr, MrHelix',
+    keywords='osu!, osu, star rating, calculator, sr',
     
-    packages=find_packages(include = ['osu-sr-calculator']),
+    packages=find_packages(include = ['osu_sr_calculator']),
     include_package_data=True,
     classifiers=[
         'Development Status :: 3 - Alpha',
