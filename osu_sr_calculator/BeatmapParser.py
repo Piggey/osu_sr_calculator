@@ -8,22 +8,24 @@ from .Objects.osu.HitObjects.Slider import Slider
 from .Objects.osu.HitObjects.Spinner import Spinner
 from .SliderPath import SliderPath
 from .Precision import Precision
+from .Logger import Logger
 from functools import cmp_to_key
 from warnings import warn
 
 class BeatmapParser(object):
     beatmap = Beatmap()
 
-    def parseBeatmap(self, data, mods):
+    def parseBeatmap(self, data, mods, verbose):
         if(not data):
             raise Exception("No beatmap found")
 
         self.beatmap = Beatmap()
         section = None
+        logr = Logger(verbose, 'BeatmapParser')
         lines = map(lambda line: line.strip(), data.split("\n"))
         
+        logr.log('Parsing beatmap', 'msg')
         for line in lines:
-            # print(line)
             if(line.startswith('//') or not line):
                 continue
             if(not section and 'osu file format v' in line):
@@ -127,15 +129,19 @@ class BeatmapParser(object):
 
                 self.beatmap.HitObjects.append(result)
 
+        logr.log('File parsed', 'msg')
+
         for h in self.beatmap.HitObjects:
             h.StackHeight = 0
 
         self.applyStacking(0, len(self.beatmap.HitObjects) - 1)
+        logr.log('Stacking applied', 'msg')
 
         scale = (1 - 0.7 * (self.getCircleSize(mods) - 5) / 5) / 2
 
         for hitObject in self.beatmap.HitObjects:
             hitObject.calculateStackedPosition(scale)
+        logr.log('Calculated stacked position of HitObjects', 'msg')
         
         return self.beatmap
 
@@ -175,6 +181,7 @@ class BeatmapParser(object):
         if(currentTimingPoint < 0):
             currentTimingPoint = 0
             warn(f'Warning: first timing point after current hit object ({startTime}). Defaulting to first timing point of the map.', Warning)
+            
 
         return timingPoints[currentTimingPoint]
     
@@ -236,7 +243,8 @@ class BeatmapParser(object):
 
             stackThreshold = TimePreempt * self.beatmap.StackLeniency
             if(isinstance(objectI, HitCircle)):
-                while(n - 1 >= 0):
+                while(n > 0):
+                    n -= 1
                     objectN = self.beatmap.HitObjects[n]
                     if(isinstance(objectN, Spinner)):
                         continue
@@ -270,11 +278,10 @@ class BeatmapParser(object):
                     if(objectN.Position.distance(objectI.Position) < stack_distance):
                         objectN.StackHeight = objectI.StackHeight + 1
                         objectI = objectN
-                    
-                    n -= 1
             
             elif(isinstance(objectI, Slider)):
-                while(n - 1 >= startIndex):
+                while(n > startIndex):
+                    n -= 1
                     objectN = self.beatmap.HitObjects[n]
                     if(isinstance(objectN, Spinner)):
                         continue
@@ -290,8 +297,6 @@ class BeatmapParser(object):
                     if(objectNEndPosition.distance(objectI.Position) < stack_distance):
                         objectN.StackHeight = objectI.StackHeight + 1
                         objectI = objectN
-
-                    n -= 1
     
     def getCircleSize(self, mods):
         if("HR" in mods):
