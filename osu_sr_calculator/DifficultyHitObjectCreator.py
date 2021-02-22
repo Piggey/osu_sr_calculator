@@ -51,7 +51,11 @@ class DifficultyHitObjectCreator(object):
         self.DeltaTime = 0
         self.StrainTime = 0
 
-        scalingFactor = self.normalized_radius / self.currentObject.Radius  
+        # so sometimes spinners have no Radius property set??? 
+        if(self.currentObject.Radius is None):
+            self.currentObject.Radius = self.normalized_radius
+
+        scalingFactor = self.normalized_radius / self.currentObject.Radius
         if(self.currentObject.Radius < 30):
             smallCircleBonus = min(30 - self.currentObject.Radius, 5) / 50
             scalingFactor *= 1 + smallCircleBonus
