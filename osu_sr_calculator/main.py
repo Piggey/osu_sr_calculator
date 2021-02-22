@@ -9,11 +9,17 @@ difficultyHitObjectCreator = DifficultyHitObjectCreator()
 starRatingCalculator = StarRatingCalculator()
 Beatmap = None
 
-def calculateStarRating(returnAllDifficultyValues = False, allCombinations = False, **kwargs):
+def calculateStarRating(returnAllDifficultyValues = False, allCombinations = False, verbose = False, **kwargs):
     """Parameters:
     returnAllDifficultyValues = False
         returns total star rating value if False
         when set to True, method will also return aim and speed difficulty
+
+    allCombinations = False
+        when set to True, will return star rating of every possible mod combination
+
+    verbose = False
+        calculator will log everything when set to True
         
     filepath: string
         path to .osu file (no need if map_id is set)
@@ -27,9 +33,6 @@ def calculateStarRating(returnAllDifficultyValues = False, allCombinations = Fal
             mods=['DT']
             mods=['EZ', 'HD', 'DT']
             mods=[]
-
-    allCombinations = False
-        when set to True, will return star rating of every possible mod combination
     """
 
     map_filepath = kwargs.get('filepath', None)
@@ -51,21 +54,21 @@ def calculateStarRating(returnAllDifficultyValues = False, allCombinations = Fal
     output = {}
     if(not allCombinations):
         label = ''.join(mods) if len(mods) > 0 else "nomod"
-        response = calculateNextModCombination(Map, mods, True)
+        response = calculateNextModCombination(Map, mods, True, verbose)
         output[label] = response if returnAllDifficultyValues else response['total']
         return output
     else:
         allModCombinations = getAllModCombinations()
         for combi in allModCombinations:
             label = ''.join(combi['mods']) if len(combi['mods']) > 0 else 'nomod'
-            response = calculateNextModCombination(Map, combi['mods'], combi['reParse'])
+            response = calculateNextModCombination(Map, combi['mods'], combi['reParse'], verbose)
             output[label] = response if returnAllDifficultyValues else response['total']
         
         return output
 
-def calculateNextModCombination(Map, mods, reParse):
+def calculateNextModCombination(Map, mods, reParse, verbose):
     if(reParse):
-        Beatmap = beatmapParser.parseBeatmap(Map, mods)
+        Beatmap = beatmapParser.parseBeatmap(Map, mods, verbose)
 
     timeRate = getTimeRate(mods)
     difficultyHitObjects = difficultyHitObjectCreator.convertToDifficultyHitObjects(Beatmap.HitObjects, timeRate)
