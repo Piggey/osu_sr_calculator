@@ -48,7 +48,7 @@ class BeatmapParser(object):
             elif(section == 'TimingPoints'):
                 split = line.split(',')
 
-                time = int(split[0]) + (24 if self.beatmap.Version < 5 else 0)
+                time = float(split[0]) + (24 if self.beatmap.Version < 5 else 0)
                 beatLength = float(split[1])
                 speedMultiplier = 100 / -beatLength if beatLength < 0 else 1
                 timeSignature = 4
@@ -180,7 +180,7 @@ class BeatmapParser(object):
 
         if(currentTimingPoint < 0):
             currentTimingPoint = 0
-            warn(f'Warning: first timing point after current hit object ({startTime}). Defaulting to first timing point of the map.', Warning)
+            warn(f'first timing point after current hit object ({startTime}). Defaulting to first timing point of the map.', Warning)
             
 
         return timingPoints[currentTimingPoint]
