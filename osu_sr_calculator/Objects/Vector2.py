@@ -22,7 +22,7 @@ class Vector2(object):
         return Vector2(self.x / div_factor, self.y / div_factor)
 
     def dot(self, vector):
-        return self.x * vector.x + self.y + vector.y
+        return self.x * vector.x + self.y * vector.y
 
     def length(self):
         return sqrt((self.x * self.x) + (self.y * self.y))

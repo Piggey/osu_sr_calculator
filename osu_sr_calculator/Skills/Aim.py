@@ -6,8 +6,10 @@ class Aim(Skill):
     angle_bonus_begin = pi / 3
     timing_threshold = 107
 
-    SkillMultiplier = 26.25
-    StrainDecayBase = 0.15
+    def __init__(self):
+        super().__init__()
+        self.SkillMultiplier = 26.25
+        self.StrainDecayBase = 0.15
 
     def strainValueOf(self, currentObject):
         result = 0

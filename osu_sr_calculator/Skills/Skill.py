@@ -6,14 +6,15 @@ class Skill(ABC):
     SINGLE_SPACING_THRESHOLD = 125
     STREAM_SPACING_THRESHOLD = 110
 
-    Previous = [] # array of DifficultyHitObject
+    def __init__(self):
+        self.Previous = [] # array of DifficultyHitObject
 
-    currentStrain = 1
-    currentSectionPeak = 1
-    strainPeaks = []
+        self.currentStrain = 1
+        self.currentSectionPeak = 1
+        self.strainPeaks = []
 
-    SkillMultiplier = None
-    StrainDecayBase = None
+        self.SkillMultiplier = None
+        self.StrainDecayBase = None
 
     def saveCurrentPeak(self):
         if(len(self.Previous) > 0):
