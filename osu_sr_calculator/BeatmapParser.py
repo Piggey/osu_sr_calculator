@@ -103,14 +103,13 @@ class BeatmapParser(object):
                                 pathType = PathType.PerfectCurve
                             else:
                                 pathType = PathType.Catmull
-                        
-                            break
+                            continue
 
                         temp = point.split(':')
                         points.append(Vector2(int(temp[0]), int(temp[1])).subtract(pos))
                     
                     def isLinear(p):
-                        return Precision.almostEqualsNumber(0, (p[1].y - p[0].y) * (p[2].x - p[0].x) - (p[1].x - p[0].x) * (p[2].y - p[0].y))
+                        return Precision().almostEqualsNumber(0, (p[1].y - p[0].y) * (p[2].x - p[0].x) - (p[1].x - p[0].x) * (p[2].y - p[0].y))
                     
                     if(len(points) == 3 and pathType == PathType.PerfectCurve and isLinear(points)):
                         pathType = PathType.Linear
