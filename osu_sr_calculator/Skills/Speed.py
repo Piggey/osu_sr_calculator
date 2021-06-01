@@ -7,12 +7,14 @@ class Speed(Skill):
     pi_over_4 = pi / 4
     pi_over_2 = pi / 2
 
-    SkillMultiplier = 1400
-    StrainDecayBase = 0.3
-
     min_speed_bonus = 75
     max_speed_bonus = 45
     speed_balancing_factor = 40
+
+    def __init__(self):
+        super().__init__()
+        self.SkillMultiplier = 1400
+        self.StrainDecayBase = 0.3
 
     def strainValueOf(self, currentObject):
         distance = min(self.SINGLE_SPACING_THRESHOLD, currentObject.TravelDistance + currentObject.JumpDistance)
