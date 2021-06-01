@@ -38,7 +38,6 @@ def calculateStarRating(returnAllDifficultyValues = False, allCombinations = Fal
     map_filepath = kwargs.get('filepath', None)
     map_id = kwargs.get('map_id', None)
     mods = kwargs.get('mods', None)
-    allCombinations = kwargs.get('allCombinations', False)
 
     if(not map_filepath and not map_id):
         raise Exception('Neither BeatmapID nor beatmap filepath specified.')
@@ -52,28 +51,27 @@ def calculateStarRating(returnAllDifficultyValues = False, allCombinations = Fal
     
     mods = parseMods(mods)
     output = {}
+    Beatmap = None
     if(not allCombinations):
         label = ''.join(mods) if len(mods) > 0 else "nomod"
-        response = calculateNextModCombination(Map, mods, True, verbose)
+        Beatmap = beatmapParser.parseBeatmap(Map, mods, verbose)
+        response = calculateNextModCombination(Beatmap, mods)
         output[label] = response if returnAllDifficultyValues else response['total']
         return output
     else:
         allModCombinations = getAllModCombinations()
         for combi in allModCombinations:
             label = ''.join(combi['mods']) if len(combi['mods']) > 0 else 'nomod'
-            response = calculateNextModCombination(Map, combi['mods'], combi['reParse'], verbose)
+            Beatmap = beatmapParser.parseBeatmap(Map, mods, verbose) if(combi['reParse'] == True or Beatmap is None) else Beatmap
+            response = calculateNextModCombination(Beatmap, combi['mods'])
             output[label] = response if returnAllDifficultyValues else response['total']
         
         return output
 
-def calculateNextModCombination(Map, mods, reParse, verbose):
-    if(reParse):
-        Beatmap = beatmapParser.parseBeatmap(Map, mods, verbose)
-
+def calculateNextModCombination(Beatmap, mods):
     timeRate = getTimeRate(mods)
     difficultyHitObjects = difficultyHitObjectCreator.convertToDifficultyHitObjects(Beatmap.HitObjects, timeRate)
     return starRatingCalculator.calculate(difficultyHitObjects, timeRate)
-
 def getOsuBeatmap(map_id):
     return osuService.getOsuBeatmap(map_id)
 
