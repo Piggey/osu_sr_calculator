@@ -7,16 +7,16 @@ class SliderPath:
     pathType = None
     controlPoints = []
     expectedDistance = None
-    isInitialised = False
-
-    calculatedPath = []
-    cumulativeLength = []
-    pathApproximator = PathApproximator()
 
     def __init__(self, pathType, controlPoints, expectedDistance):
         self.pathType = pathType
         self.controlPoints = controlPoints
         self.expectedDistance = expectedDistance
+        self.isInitialised = False
+
+        self.calculatedPath = []
+        self.cumulativeLength = []
+        self.pathApproximator = PathApproximator()
 
         self.ensureInitialised()
 
@@ -48,10 +48,10 @@ class SliderPath:
                 start = end
 
     def calculateSubPath(self, subControlPoints):
-        if(self.pathType == PathType.Linear.name):
+        if(self.pathType == PathType.Linear):
             return self.pathApproximator.approximateLinear(subControlPoints)
 
-        elif(self.pathType == PathType.PerfectCurve.name):
+        elif(self.pathType == PathType.PerfectCurve):
             if(len(self.controlPoints) != 3 or len(subControlPoints) != 3):
                 return
             subPath = self.pathApproximator.approximateCircularArc(subControlPoints)
@@ -119,7 +119,7 @@ class SliderPath:
         d0 = self.cumulativeLength[i - 1]
         d1 = self.cumulativeLength[i]
 
-        if(Precision.almostEqualsNumber(self, d0, d1)): # uhh what
+        if(Precision().almostEqualsNumber(self, d0, d1)): # uhh what
             return p0
         
         w = (d - d0) / (d1 - d0)
