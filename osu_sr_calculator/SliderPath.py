@@ -56,7 +56,7 @@ class SliderPath:
                 return
             subPath = self.pathApproximator.approximateCircularArc(subControlPoints)
             if(len(subPath) == 0):
-                return 
+                return self.pathApproximator.approximateBezier(subControlPoints)
             return subPath
 
         elif(self.pathType == PathType.Catmull):
