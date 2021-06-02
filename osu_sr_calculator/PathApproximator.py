@@ -83,7 +83,7 @@ class PathApproximator(object):
         bSq = (a.subtract(c)).lengthSquared()
         cSq = (a.subtract(b)).lengthSquared()
 
-        if(Precision.almostEqualsNumber(aSq, 0) or Precision.almostEqualsNumber(bSq, 0) or Precision.almostEqualsNumber(cSq, 0)):
+        if(Precision().almostEqualsNumber(aSq, 0) or Precision().almostEqualsNumber(bSq, 0) or Precision().almostEqualsNumber(cSq, 0)):
             return []
         
         s = aSq * (bSq + cSq - aSq)
@@ -92,7 +92,7 @@ class PathApproximator(object):
 
         Sum = s + t + u
 
-        if(Precision.almostEqualsNumber(Sum, 0)):
+        if(Precision().almostEqualsNumber(Sum, 0)):
             return []
 
         centre = (a.scale(s).add(b.scale(t)).add(c.scale(u))).divide(Sum)
@@ -121,7 +121,7 @@ class PathApproximator(object):
         output = []
 
         for i in range(amountPoints):
-            fract = 1 / (amountPoints - 1)
+            fract = i / (amountPoints - 1)
             theta = thetaStart + Dir * fract * thetaRange
             o = Vector2(cos(theta), sin(theta)).scale(r)
             output.append(centre.add(o))
