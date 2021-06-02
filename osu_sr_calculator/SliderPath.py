@@ -119,7 +119,7 @@ class SliderPath:
         d0 = self.cumulativeLength[i - 1]
         d1 = self.cumulativeLength[i]
 
-        if(Precision().almostEqualsNumber(self, d0, d1)): # uhh what
+        if(Precision().almostEqualsNumber(d0, d1)): # uhh what
             return p0
         
         w = (d - d0) / (d1 - d0)
