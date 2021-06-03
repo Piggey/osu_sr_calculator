@@ -53,7 +53,7 @@ class SliderPath:
 
         elif(self.pathType == PathType.PerfectCurve):
             if(len(self.controlPoints) != 3 or len(subControlPoints) != 3):
-                return
+                return self.pathApproximator.approximateBezier(subControlPoints)
             subPath = self.pathApproximator.approximateCircularArc(subControlPoints)
             if(len(subPath) == 0):
                 return self.pathApproximator.approximateBezier(subControlPoints)
