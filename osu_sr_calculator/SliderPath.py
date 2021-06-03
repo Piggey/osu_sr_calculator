@@ -76,8 +76,8 @@ class SliderPath:
 
             if(self.expectedDistance is not None and self.expectedDistance - l < d):
                 self.calculatedPath[i + 1] = self.calculatedPath[i].add(diff.scale((self.expectedDistance - l) / d))
-                for j in range(i + 2, (len(self.calculatedPath) - 2 - i)):
-                    self.calculatedPath.remove(self.calculatedPath[j])
+                for j in range(len(self.calculatedPath), i + 2):
+                    del self.calculatedPath[j]
                 
                 l = self.expectedDistance
                 self.cumulativeLength.append(l)
