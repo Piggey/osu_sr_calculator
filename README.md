@@ -5,30 +5,7 @@ Package to calculate star rating of any osu beatmap with any mod combination.
 Updated on: 19.02.2021
 
 ## Disclaimer
-> calculated star ratings may be varying slightly from original values (margin of 0.01)
-
-Yeah, thats a complete bullshit right now, its pretty bugged. For example:
-
-```python
-for i in range(10):
-    sr = calculateStarRating(filepath='test.osu')
-    print(sr)
-```
-produces 10 different star rating values:
-
-```
-{'nomod': 5.955382197693518}
-{'nomod': 6.109616666952475}
-{'nomod': 6.172281009645555}
-{'nomod': 6.20557690741399}
-{'nomod': 6.225886061332697}
-{'nomod': 6.239371401049138}
-{'nomod': 6.248839053432763}
-{'nomod': 6.255751258545029}
-{'nomod': 6.2609497007447885}
-{'nomod': 6.264954757521128}
-```
-I guess lack of any tests does not help at all.
+calculated star ratings may be varying slightly from original values (margin of 0.01)
 
 ## Usage
 ```python

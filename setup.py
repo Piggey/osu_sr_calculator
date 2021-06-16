@@ -14,7 +14,7 @@ packages = [
 setup(
     name='osu_sr_calculator',
     author='Piggey',
-    version='0.7.3',
+    version='1.0.1',
     description="MrHelix's osu! star rating calculator rewritten for your Python needs",
     long_description=readme,
     long_description_content_type="text/markdown",
