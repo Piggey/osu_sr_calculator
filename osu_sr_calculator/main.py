@@ -101,4 +101,4 @@ def getAllModCombinations():
     ]
 
 def getLocalOsuBeatmap(filePath):
-    return open(filePath, 'r').read()
+    return open(filePath, 'r', encoding='utf-8').read()
