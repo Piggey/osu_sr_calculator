@@ -1,8 +1,8 @@
-from .Skill import Skill
+from .OsuStrainSkill import OsuStrainSkill
 from ..Objects.osu.HitObjects.DifficultyHitObject import DifficultyHitObject
 from math import pi, sqrt, sin
 
-class Aim(Skill):
+class Aim(OsuStrainSkill):
     angle_bonus_begin = pi / 3
     timing_threshold = 107
 
@@ -25,7 +25,7 @@ class Aim(Skill):
                     pow(sin(currentObject.Angle - self.angle_bonus_begin), 2) *
                     max(currentObject.JumpDistance - scale, 0)
                 )
-                result = 1.5 * applyDimishingExp(max(0, angleBonus)) / max(self.timing_threshold, self.Previous[0].StrainTime)
+                result = 1.4 * applyDimishingExp(max(0, angleBonus)) / max(self.timing_threshold, self.Previous[0].StrainTime)
         
         jumpDistanceExp = applyDimishingExp(currentObject.JumpDistance)
         travelDistanceExp = applyDimishingExp(currentObject.TravelDistance)
