@@ -1,8 +1,8 @@
-from .Skill import Skill
+from .OsuStrainSkill import OsuStrainSkill
 from ..Objects.osu.HitObjects.DifficultyHitObject import DifficultyHitObject
 from math import pi, sin
 
-class Speed(Skill):
+class Speed(OsuStrainSkill):
     angle_bonus_begin = 5 * pi / 6
     pi_over_4 = pi / 4
     pi_over_2 = pi / 2
@@ -11,10 +11,15 @@ class Speed(Skill):
     max_speed_bonus = 45
     speed_balancing_factor = 40
 
+    ReducedSectionCount = 5
+    DifficultyMultiplier = 1.04
+
     def __init__(self):
         super().__init__()
         self.SkillMultiplier = 1400
         self.StrainDecayBase = 0.3
+        self.ReducedSectionCount = 5
+        self.DifficultyMultiplier = 1.04
 
     def strainValueOf(self, currentObject):
         distance = min(self.SINGLE_SPACING_THRESHOLD, currentObject.TravelDistance + currentObject.JumpDistance)
